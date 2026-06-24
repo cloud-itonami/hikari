@@ -1,0 +1,19 @@
+{:lexicon 1
+ :id "com.etzhayyim.hikari.installAttestation"
+ :defs
+ {:main
+  {:type "record"
+   :key "tid"
+   :record
+   {:type "object"
+    :required ["installId" "vendor" "sourcing"]
+    :properties
+    {:installId {:type "string" :description "Equipment batch/lot ID"}
+     :vendor {:type "string" :description "equipment supplier DID"}
+     :parcelDid {:type "string" :description "destination LANDS parcel"}
+     :equipmentType {:type "string" :description "solar-pv | battery-lifepo4 | geothermal-loop"}
+     :quantity {:type "number" :description "unit count"}
+     :sourcing {:type "string" :description "Charter Rider §2(g) audit result: compliant|pending|failed"}
+     :sourcingAuditCid {:type "string" :description "IPFS CID of sourcing report"}
+     :installedKwCapacity {:type "number" :description "nameplate capacity (kW)"}
+     :timestamp {:type "string" :description "ISO-8601"}}}}}}

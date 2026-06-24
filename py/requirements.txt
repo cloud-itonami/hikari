@@ -1,0 +1,4 @@
+# hikari 光 — no external dependencies for R0 agent cell
+# Murakumo inference: kotoba host provides llm.infer() at 127.0.0.1:4000
+# Datalog: kotoba host provides datalog.query/assert at :8077
+# Test: offline, no network, no external deps

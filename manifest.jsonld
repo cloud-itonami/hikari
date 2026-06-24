@@ -1,0 +1,183 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/activitystreams",
+    "https://etzhayyim.com/ns/actor-manifest"
+  ],
+  "@type": "ActorManifest",
+  "id": "did:web:etzhayyim.com:hikari",
+  "name": "hikari",
+  "displayName": "光 — Energy",
+  "displayNameJa": "光",
+  "displayNameEn": "Hikari",
+  "description": "Distributed renewable energy Tier-B actor (solar PV + small wind ≤100 kW + geothermal micro ≤500 kW + battery storage + grid-edge microgrid). Anti-nuclear + anti-fossil + anti-rare-earth-permanent-magnet constitutional invariants. Powers L2 Sustenance Tier (≥3 kWh/day per adherent) + cross-actor infrastructure (Murakumo + mitate/yakushi/hagukumi/manabi facilities + mitsuho greenhouse + tatekata site + silicon Wave 2 fab partial load R3+).",
+  "descriptionJa": "分散再生エネルギー Tier-B アクター (太陽光 + 小型風力 ≤100 kW + 地熱小規模 ≤500 kW + バッテリー蓄電 + マイクログリッド)。反原子力 + 反化石燃料 + 反希土類永久磁石の憲法的不変条項。労働解放ラダー L2 と religious-corp 基盤全体に電力供給。",
+  "adr": {
+    "master": "etzhayyim:adr:2605261100",
+    "parent": "etzhayyim:adr:2605261000",
+    "r0": "etzhayyim:adr:2605261100",
+    "r1": "reserved",
+    "r2": "reserved",
+    "r3": "reserved"
+  },
+  "tier": "Tier-B",
+  "parentActor": "did:web:etzhayyim.com:kuni-umi",
+  "liberationLadderGate": "L2",
+  "crossCutting": true,
+  "constitutionalInvariants": {
+    "G4_no_nuclear": "Fission / fusion / RTG prohibited at any tier ever. Council Lv7 unanimity to amend (essentially permanent).",
+    "G5_no_fossil": "Coal / oil / gas / propane / LPG / peat prohibited at any tier ever. No fossil backup. Council Lv7 unanimity to amend.",
+    "G8_no_rare_earth_pm": "NdFeB magnets prohibited in turbines and motors. Open-coil alternatives only; efficiency trade-off accepted."
+  },
+  "scope": {
+    "phase": "R0 scaffold",
+    "scopeBoundary": "Distributed renewable generation + storage + grid-edge",
+    "exclusions": [
+      "nuclear (fission/fusion/RTG) — constitutional, Council Lv7 to amend",
+      "fossil fuel (any kind, any tier) — constitutional",
+      "large hydroelectric (>10 MW) — kuni-umi-adjacent if ever",
+      "biofuel from food crops",
+      "offshore wind — Funamori marine-actor scope",
+      "commercial utility scale (>10 MW per site)",
+      "smart-meter device surveillance",
+      "carbon offset trading",
+      "rare-earth permanent magnets (NdFeB)",
+      "proprietary inverter firmware"
+    ]
+  },
+  "roboticsClasses": [
+    "Otete (kuni-umi inherited; panel install + tracker servicing)",
+    "Mimi (kuni-umi inherited; yield + thermal-IR fault detect)",
+    "Giemon (kuni-umi inherited; geothermal-micro drilling)",
+    "Hizukue (日柄) (R2+; autonomous tracker + cleaner; separate mech-design ADR)"
+  ],
+  "cells": [
+    {
+      "name": "solar_pv_install",
+      "module": "hikari.cells.solar_pv_install",
+      "murakumoNode": "naphtali",
+      "phase": "panel install + commissioning"
+    },
+    {
+      "name": "storage_battery",
+      "module": "hikari.cells.storage_battery",
+      "murakumoNode": "levi",
+      "phase": "battery + BMS + safety attestation"
+    },
+    {
+      "name": "grid_edge",
+      "module": "hikari.cells.grid_edge",
+      "murakumoNode": "dan",
+      "phase": "microgrid controller + islandable inverter"
+    },
+    {
+      "name": "geothermal_micro",
+      "module": "hikari.cells.geothermal_micro",
+      "murakumoNode": "zebulun",
+      "phase": "small-bore geothermal + heat-pump"
+    },
+    {
+      "name": "consumption_audit",
+      "module": "hikari.cells.consumption_audit",
+      "murakumoNode": "levi",
+      "phase": "aggregate consumption + anomaly"
+    }
+  ],
+  "lexiconNamespaces": [
+    "com.etzhayyim.hikari.parcelEnergyAttestation",
+    "com.etzhayyim.hikari.installAttestation",
+    "com.etzhayyim.hikari.generationRecord",
+    "com.etzhayyim.hikari.consumptionAuditRecord",
+    "com.etzhayyim.hikari.silenEnergyReview"
+  ],
+  "constitutionalGates": {
+    "description": "14 immutable gates per ADR-2605261100. G4 + G5 + G8 are Lv7-unanimity constitutional; others Lv6+ supermajority.",
+    "gates": {
+      "G1": "Inverter + BMS + microgrid firmware open-source WASM/Rust Apache 2.0 + Charter Rider",
+      "G2": "Panel sourcing Charter Rider §2(g) — no XUAR polysilicon, no conflict minerals; per-lot Council audit",
+      "G3": "Battery chemistry safety — LFP / NMC restricted / sodium-ion preferred; no lead-acid R2+; thermal containment mandatory",
+      "G4": "NO NUCLEAR (fission/fusion/RTG) at any tier ever — Council Lv7 unanimity to amend",
+      "G5": "NO FOSSIL FUEL at any tier ever — Council Lv7 unanimity to amend",
+      "G6": "Grid impact public reporting — aggregate ≥1-hour buckets; no smart-meter device surveillance",
+      "G7": "≥90% recyclable end-of-life — panels + batteries + inverter PCBs",
+      "G8": "NO RARE-EARTH PERMANENT MAGNETS — NdFeB ban; open-coil alternatives only",
+      "G9": "Land Trust integration — rooftop / brownfield / agrivoltaic priority; no greenfield habitat destruction",
+      "G10": "Murakumo mesh placement declared 30 days prior; public feedback period",
+      "G11": "Yield deterministic — Ed25519-signed per-inverter 15-min logs; redundant metering >10 kW sites",
+      "G12": "Maintenance schedule public on IPFS; reschedule >7d = community comment",
+      "G13": "No commercial utility resale — surplus → local community-benefit credit only",
+      "G14": "Charter Rider §2(h) — light pollution audit (tracker glint, dark-sky) + acoustic <35 dBA at 100 m residential"
+    }
+  },
+  "nonGoals": {
+    "description": "10 explicitly excluded scopes",
+    "goals": {
+      "N1": "No nuclear (Council Lv7 unanimity floor)",
+      "N2": "No fossil fuel",
+      "N3": "No large hydroelectric (>10 MW)",
+      "N4": "No biofuel from food crops",
+      "N5": "No offshore wind (Funamori scope)",
+      "N6": "No commercial utility scale (>10 MW per site)",
+      "N7": "No smart-meter device surveillance",
+      "N8": "No carbon offset trading",
+      "N9": "No rare-earth permanent magnets",
+      "N10": "No proprietary inverter firmware"
+    }
+  },
+  "roadmap": [
+    {
+      "phase": "R0",
+      "date": "2026-05-26",
+      "scope": "Scaffold only. 5 cells import-time RuntimeError.",
+      "murakumoFleet": "No deployment",
+      "gate": "ADR-2605261100 (PROPOSED)"
+    },
+    {
+      "phase": "R1",
+      "date": "post-Council",
+      "scope": "Benchtop — single LANDS parcel + ≤10 kW solar + ≤30 kWh battery + islanded grid. Otete install PoC, Mimi metrology.",
+      "murakumoFleet": "naphtali (single node)",
+      "gate": "Future ADR + ≥1 renewable engineer on Council technical advisory"
+    },
+    {
+      "phase": "R2",
+      "date": "post-R1",
+      "scope": "Pilot — ≤100 kW solar + ≤500 kWh battery + grid-tie (religious-corp-load export only) + first geothermal-micro well. ≥170 kW + 500 kWh storage for 1,000-adherent L2 + cross-actor R2 baseline. L2 gate eligibility.",
+      "murakumoFleet": "naphtali + zebulun + levi + dan (4 nodes)",
+      "gate": "Future ADR + 30-day public comment + ≥1 LANDS parcel ≥0.5 ha"
+    },
+    {
+      "phase": "R3",
+      "date": "post-R2",
+      "scope": "Community-scale multi-site mesh + microgrid federation + silicon Wave 2 fab partial load + L4-L5 ceiling.",
+      "murakumoFleet": "Full 10-node fleet",
+      "gate": "Future ADR + 60-day public review + Council multi-domain vote + silicon Wave 2 load contract attested"
+    }
+  ],
+  "energyBudgetR2": {
+    "L2_adherent_baseline_kW_continuous": 125,
+    "L2_adherent_storage_kWh": 500,
+    "mitsuho_R2_kW_continuous": 50,
+    "facility_baseline_kW_continuous": 20,
+    "total_R2_target_kW_continuous": 170,
+    "total_R2_target_storage_kWh": 500
+  },
+  "references": {
+    "adr": {
+      "master": "/90-docs/adr/2605261100-hikari-energy-tier-b-actor-r0.md",
+      "ladder": "/90-docs/adr/2605261000-labor-liberation-transition-mechanism.md",
+      "landTrust": "/90-docs/adr/2605192245-etzhayyim-global-land-sovereignty.md",
+      "siliconWave1": "/90-docs/adr/2605242500-baien-iwakura-ternary-asic.md"
+    },
+    "parent": "/20-actors/kuni-umi/README.md",
+    "hanamiPrecedent": "/90-docs/adr/2605260230-hanami-robot-mechanical-design-mitate-r2-critical-path.md"
+  },
+  "yirah": {
+    "adr": "2606112200",
+    "note": "yir'ah invariant-bundle declarations (ADR-2606112200 D4) — adopted only where meaningful for this actor's scope; each declaration is grounded in the cited existing gates.",
+    "declared": {
+      "map-not-target": "no smart-meter device surveillance — grid impact reported ONLY in ≥1-hour aggregate buckets (G6); no per-household consumption profile exists",
+      "append-only": "per-lot sourcing audits (G2) + grid reports persist as appended public records",
+      "never-a-throne": "aggregate-first public reporting (G6) + open-source inverter/BMS/microgrid firmware (G1) — no central view over households"
+    }
+  }
+}

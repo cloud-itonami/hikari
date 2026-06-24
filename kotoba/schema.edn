@@ -1,0 +1,156 @@
+;; hikari 光 — kotoba EAVT schema
+;; ADR-2605261100 · migration plan Phase 3 (90-docs/260602-hikari-kotoba-native-migration-plan.md)
+;; Energy generation/storage/grid-edge over kotoba Datoms: parcel energy baselines,
+;; installation attestations, generation records (solar/geo/battery), consumption audit,
+;; grid state. All state is kotoba Datoms — replaces legacy Python cell state (G6).
+
+[;; ───────────────────────────── :parcel/* — LANDS land-trust parcel ─────────────────────────────
+ {:db/ident :parcel/did
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity
+  :db/doc "LANDS registry 4-layer parcel DID (Base L2 + geth + IPFS + LANDS.md)"}
+ {:db/ident :parcel/location
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "geolocation (lat,lon or address)"}
+ {:db/ident :parcel/area-sqm
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "parcel area in square meters"}
+
+ ;; ───────────────────────────── :parcel-energy-attestation/* — renewable potential ─────────────────────────────
+ {:db/ident :parcel-energy-attestation/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+ {:db/ident :parcel-energy-attestation/parcel-did
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one}
+ {:db/ident :parcel-energy-attestation/solar-potential-kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "annual solar generation estimate (kWh)"}
+ {:db/ident :parcel-energy-attestation/geo-potential-kw
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "baseload thermal power if ≤500m drilling feasible (kW)"}
+ {:db/ident :parcel-energy-attestation/biodiversity-no-harm
+  :db/valueType :db.type/boolean
+  :db/cardinality :db.cardinality/one
+  :db/doc "G4 ecosystem baseline compliance"}
+
+ ;; ───────────────────────────── :install-attestation/* — equipment sourcing audit ─────────────────────────────
+ {:db/ident :install-attestation/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+ {:db/ident :install-attestation/parcel-did
+  :db/valueType :db.type/ref
+  :db/cardinality :db.cardinality/one}
+ {:db/ident :install-attestation/vendor
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "equipment supplier DID"}
+ {:db/ident :install-attestation/equipment-type
+  :db/valueType :db.type/keyword
+  :db/cardinality :db.cardinality/one
+  :db/doc ":solar-pv | :battery-lifepo4 | :geothermal-loop"}
+ {:db/ident :install-attestation/sourcing-audit
+  :db/valueType :db.type/keyword
+  :db/cardinality :db.cardinality/one
+  :db/doc ":compliant | :pending | :failed (Charter Rider §2(g))"}
+ {:db/ident :install-attestation/kw-capacity
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "nameplate capacity (kW)"}
+ {:db/ident :install-attestation/timestamp
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; ───────────────────────────── :generation-record/* — energy production (aggregate) ─────────────────────────────
+ {:db/ident :generation-record/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+ {:db/ident :generation-record/period
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "ISO-8601 period start..end"}
+ {:db/ident :generation-record/pv-kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "solar PV generation (kWh)"}
+ {:db/ident :generation-record/geo-kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "geothermal generation (kWh)"}
+ {:db/ident :generation-record/battery-discharge-kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "battery discharge (kWh)"}
+ {:db/ident :generation-record/total-kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "total generation + discharge (kWh)"}
+ {:db/ident :generation-record/timestamp
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; ───────────────────────────── :consumption-audit-record/* — consumption (≥1h aggregate) ─────────────────────────────
+ {:db/ident :consumption-audit-record/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+ {:db/ident :consumption-audit-record/period
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "ISO-8601 period (≥1h; no smart-meter PII, G9)"}
+ {:db/ident :consumption-audit-record/facility-did
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "facility DID (optional; blank for adherent baseline aggregate)"}
+ {:db/ident :consumption-audit-record/kwh
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "period aggregate consumption (kWh)"}
+ {:db/ident :consumption-audit-record/detail-encrypted-cid
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "com.etzhayyim.encrypted.* CID (per-load breakdown, DID-bound)"}
+ {:db/ident :consumption-audit-record/timestamp
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one}
+
+ ;; ───────────────────────────── :grid-edge-record/* — microgrid state ─────────────────────────────
+ {:db/ident :grid-edge-record/id
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity}
+ {:db/ident :grid-edge-record/timestamp
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc "ISO-8601 snapshot time"}
+ {:db/ident :grid-edge-record/net-load-kw
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "net load (generation - consumption, kW)"}
+ {:db/ident :grid-edge-record/frequency-hz
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "grid frequency (50.0 or 60.0 Hz nominal)"}
+ {:db/ident :grid-edge-record/battery-soc-pct
+  :db/valueType :db.type/long
+  :db/cardinality :db.cardinality/one
+  :db/doc "battery state-of-charge (0..100 %)"}
+
+ ;; ───────────────────────────── :sbt/* — Adherent SBT eligibility ─────────────────────────────
+ {:db/ident :sbt/holder-did
+  :db/valueType :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/unique :db.unique/identity
+  :db/doc "DID of an Adherent SBT holder (facility consumer, adherent baseline recipient)"}
+ {:db/ident :sbt/active
+  :db/valueType :db.type/boolean
+  :db/cardinality :db.cardinality/one
+  :db/doc "active Adherent SBT? required for energy settlement (§3 / G7)"}]

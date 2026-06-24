@@ -1,0 +1,43 @@
+;; hikari 光 — actor manifest (Gen-3 kotoba-native)
+;; Energy generation/storage/grid-edge — L2 Sustenance Tier cross-cutting infrastructure
+;; ADR-2605261100 (R0 scaffold, 2026-05-26)
+{:actor/id        "hikari"
+ :actor/glyph     "光"
+ :actor/tier      :tier-b
+ :actor/domain    "hikari.etzhayyim.com"
+ :actor/purpose   "Energy generation/storage/grid-edge — L2 Sustenance Tier cross-cutting infrastructure supplying adherent baseline (1000 x 3 kWh/day = 3000 kWh/day = ~125 kW continuous + 4-hr storage) and facility power (mitsuho greenhouse, mitate, yakushi, tatekata). 5 Pregel cells: solar_pv_install, storage_battery, geothermal_micro, grid_edge (microgrid controller), consumption_audit. Multi-generational land stewardship (§1.11), no nuclear/fossil/rare-earth permanent magnets (constitutional invariants G4/G5/G8). Murakumo-only inference, kotoba-EAVT-native state."
+ :actor/status    :r0
+ :actor/adr       "2605261100"
+ :actor/related   ["2605261000" "2605192245" "2605215000"]
+
+ :actor/charter-rider
+ {:rider/version "2.0"
+  :rider/applied true}
+
+ :actor/gates
+ [{:gate/id "G1"  :gate/name "no-nuclear"                       :gate/rule "Fission/fusion/RTG all prohibited; 10000+ year waste inconsistent with §1.3 multi-gen + §1.11 land trust (Council Lv7 unanimity)"}
+  {:gate/id "G2"  :gate/name "no-fossil-fuel"                   :gate/rule "Coal/oil/gas/LPG all prohibited; outage resilience via battery + thermal storage + multi-site mesh (Council Lv7 unanimity)"}
+  {:gate/id "G3"  :gate/name "no-rare-earth-permanent-magnets"  :gate/rule "NdFeB magnets prohibited in wind/motors; open-coil alternatives only (~15-20% efficiency penalty accepted; Council Lv7 unanimity)"}
+  {:gate/id "G4"  :gate/name "renewable-only-sourcing"          :gate/rule "Panels/batteries/geothermal sourcing Charter Rider §2(g) audit per lot; no conflict minerals; biodiversity no-harm baseline (LANDS parcel registered)"}
+  {:gate/id "G5"  :gate/name "murakumo-only"                    :gate/rule "Inference is Murakumo-only (KotobaLLM 127.0.0.1:4000); external LLM prohibited (ADR-2605215000)"}
+  {:gate/id "G6"  :gate/name "kotoba-eavt-native"               :gate/rule "Generation/consumption/storage/grid records are kotoba Datoms; no SQL/RisingWave/Cypher canonical (ADR-2605312345)"}
+  {:gate/id "G7"  :gate/name "tithe-non-fiat"                   :gate/rule "Settlement USDC Base L2 + ERC-4337 + TitheRouter 10% only; no Stripe/fiat (ADR-2605192115 §3)"}
+  {:gate/id "G8"  :gate/name "no-server-key"                    :gate/rule "Operator signs own transactions; platform holds no key (ADR-2605231525)"}
+  {:gate/id "G9"  :gate/name "pii-encrypted-envelope"           :gate/rule "Consumption audit (granular loads) → com.etzhayyim.encrypted.*, DID-bound (≥1h buckets; no smart-meter PII)"}
+  {:gate/id "G10" :gate/name "consent-bound"                    :gate/rule "Real grid control / load-dispatch gated by member attestation; compute-only R0 (R1+ Council ratify + ≥1 renewable-engineer on Council advisory)"}
+  {:gate/id "G11" :gate/name "r1-activation-triggers"           :gate/rule "R0→R1: Council Lv6+ ratify; ≥1 renewable engineer on advisory; ≥1 LANDS parcel registered; Charter Rider §2(g) audit framework operational; battery chemistry safety Council-ratified"}]
+
+ :actor/cells
+ [{:cell/id "solar_pv_install"  :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "storage_battery"    :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "geothermal_micro"   :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "grid_edge"          :cell/kind :langgraph :cell/runtime :wasm}
+  {:cell/id "consumption_audit"  :cell/kind :langgraph :cell/runtime :wasm}]
+
+ :actor/lex
+ [{:lex/id "parcelEnergyAttestation"}
+  {:lex/id "installAttestation"}
+  {:lex/id "generationRecord"}
+  {:lex/id "consumptionAuditRecord"}
+  {:lex/id "silenEnergyReview"}]
+}

@@ -1,0 +1,79 @@
+;; hikari 光 — kotoba seed data (representative, R0)
+;; ADR-2605261100  ·  :sourcing :representative (NOT authoritative; G4)
+;; A small worked example: 1 parcel (rooftop solar + battery + geo baseline) + generation
+;; records (solar + battery discharge) + consumption audit (adherent baseline). Demonstrates
+;; renewable potential assessment, installation attestation (sourcing pending Council audit),
+;; generation tracking (aggregate 15-min per inverter), and consumption (≥1h encrypted detail).
+;; NOT a live commercial offer; R0 computation-only.
+
+[;; ════════════ Parcel (LANDS-registered) ════════════
+ {:parcel/did "did:web:etzhayyim.com:lands:parcel/jp-rooftop-001"
+  :parcel/location "Tokyo, Chiyoda, 35.6762° N 139.7674° E"
+  :parcel/area-sqm 250}
+
+ ;; ════════════ Parcel Energy Attestation (representative R0) ════════════
+ {:parcel-energy-attestation/id "pea.demo.0001"
+  :parcel-energy-attestation/parcel-did "did:web:etzhayyim.com:lands:parcel/jp-rooftop-001"
+  :parcel-energy-attestation/solar-potential-kwh 30000
+  :parcel-energy-attestation/geo-potential-kw 0
+  :parcel-energy-attestation/biodiversity-no-harm true}
+
+ ;; ════════════ Installation Attestation (sourcing audit pending) ════════════
+ {:install-attestation/id "inst.demo.0001"
+  :install-attestation/parcel-did "did:web:etzhayyim.com:lands:parcel/jp-rooftop-001"
+  :install-attestation/vendor "did:web:vendor.example.com/solar"
+  :install-attestation/equipment-type :solar-pv
+  :install-attestation/sourcing-audit :pending
+  :install-attestation/kw-capacity 15
+  :install-attestation/timestamp "2026-06-02T00:00:00Z"}
+
+ {:install-attestation/id "inst.demo.0002"
+  :install-attestation/parcel-did "did:web:etzhayyim.com:lands:parcel/jp-rooftop-001"
+  :install-attestation/vendor "did:web:vendor.example.com/battery"
+  :install-attestation/equipment-type :battery-lifepo4
+  :install-attestation/sourcing-audit :pending
+  :install-attestation/kw-capacity 5
+  :install-attestation/timestamp "2026-06-02T00:00:00Z"}
+
+ ;; ════════════ Generation Records (aggregate per period) ════════════
+ {:generation-record/id "gen.demo.0001"
+  :generation-record/period "2026-06-02T00:00:00Z/2026-06-02T06:00:00Z"
+  :generation-record/pv-kwh 45
+  :generation-record/geo-kwh 0
+  :generation-record/battery-discharge-kwh 12
+  :generation-record/total-kwh 57
+  :generation-record/timestamp "2026-06-02T06:00:00Z"}
+
+ {:generation-record/id "gen.demo.0002"
+  :generation-record/period "2026-06-02T06:00:00Z/2026-06-02T12:00:00Z"
+  :generation-record/pv-kwh 78
+  :generation-record/geo-kwh 0
+  :generation-record/battery-discharge-kwh 5
+  :generation-record/total-kwh 83
+  :generation-record/timestamp "2026-06-02T12:00:00Z"}
+
+ ;; ════════════ Consumption Audit (≥1h aggregate, detail encrypted) ════════════
+ {:consumption-audit-record/id "cons.demo.0001"
+  :consumption-audit-record/period "2026-06-02T00:00:00Z/2026-06-02T06:00:00Z"
+  :consumption-audit-record/facility-did "did:web:mitsuho.example.com"
+  :consumption-audit-record/kwh 35
+  :consumption-audit-record/detail-encrypted-cid "ipfs://bafy...encrypted.greenhouse"
+  :consumption-audit-record/timestamp "2026-06-02T06:00:00Z"}
+
+ {:consumption-audit-record/id "cons.demo.0002"
+  :consumption-audit-record/period "2026-06-02T00:00:00Z/2026-06-02T06:00:00Z"
+  :consumption-audit-record/facility-did ""
+  :consumption-audit-record/kwh 15
+  :consumption-audit-record/detail-encrypted-cid "ipfs://bafy...encrypted.adherent-baseline"
+  :consumption-audit-record/timestamp "2026-06-02T06:00:00Z"}
+
+ ;; ════════════ Grid Edge Record (microgrid snapshot) ════════════
+ {:grid-edge-record/id "grid.demo.0001"
+  :grid-edge-record/timestamp "2026-06-02T06:00:00Z"
+  :grid-edge-record/net-load-kw 7
+  :grid-edge-record/frequency-hz 50
+  :grid-edge-record/battery-soc-pct 72}
+
+ ;; ════════════ SBT Eligibility (facility + adherent) ════════════
+ {:sbt/holder-did "did:web:mitsuho.example.com" :sbt/active true}
+ {:sbt/holder-did "did:web:adherent.example.etzhayyim.com" :sbt/active true}]
