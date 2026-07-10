@@ -1,13 +1,1 @@
-;; hikari 光 — produced-goods catalog (Ring 1 internal economy)
-;; Declared by the producing actor; ingested by okaimono (ADR-2606012100 §R1).
-;; Shared :product/* vocabulary. Prices in USDC minor (6-dp).
-[{:product/id "int.hikari.solar-pv-400w" :product/title "hikari ソーラー PV パネル 400W"
-  :product/ring :internal :product/maker-actor "hikari" :product/source :internal-actor
-  :product/unspsc "26111604" :product/price-minor 120000000 :product/currency "USDC"
-  :product/durability-years 25.0 :product/repairability 7 :product/labor-provenance :etzhayyim-dignity
-  :product/carbon-kg 280.0 :product/lifecycle-route :kanayama :product/sourcing :representative}
- {:product/id "int.hikari.storage-5kwh" :product/title "hikari 蓄電モジュール 5kWh (LFP)"
-  :product/ring :internal :product/maker-actor "hikari" :product/source :internal-actor
-  :product/unspsc "26111710" :product/price-minor 350000000 :product/currency "USDC"
-  :product/durability-years 15.0 :product/repairability 8 :product/labor-provenance :etzhayyim-dignity
-  :product/carbon-kg 600.0 :product/lifecycle-route :kanayama :product/sourcing :representative}]
+[{:product/unspsc "26111604", :product/lifecycle-route :kanayama, :product/source :internal-actor, :product/id "int.hikari.solar-pv-400w", :product/labor-provenance :etzhayyim-dignity, :product/sourcing :representative, :product/repairability 7, :product/price-minor 120000000, :product/ring :internal, :db/id -1, :product/durability-years 25.0, :product/maker-actor "hikari", :product/carbon-kg 280.0, :product/title "hikari ソーラー PV パネル 400W", :product/currency "USDC"} {:product/unspsc "26111710", :product/lifecycle-route :kanayama, :product/source :internal-actor, :product/id "int.hikari.storage-5kwh", :product/labor-provenance :etzhayyim-dignity, :product/sourcing :representative, :product/repairability 8, :product/price-minor 350000000, :product/ring :internal, :db/id -2, :product/durability-years 15.0, :product/maker-actor "hikari", :product/carbon-kg 600.0, :product/title "hikari 蓄電モジュール 5kWh (LFP)", :product/currency "USDC"}]
