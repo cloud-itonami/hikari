@@ -1,7 +1,7 @@
 #!/usr/bin/env bb
 ;; hikari 光 — kinematics validation of the shared kuni-umi planar-arm FK/IK.
 ;; Run:  bb --classpath 20-actors 20-actors/hikari/methods/test_substrate_kinematics.cljc
-(ns hikari.methods.test-substrate-kinematics
+(ns hikari.methods.substrate-kinematics-test
   "Kinematics validation of the planar-arm forward/inverse kinematics in the shared kuni-umi
   substrate — the closed-form 2-link IK (`ik2`) that drives panel_install and any robot-arm reach
   task across the infra-robotics fleet (hikari/mizuho/kamado/noroshi share this substrate). The

@@ -1,0 +1,24 @@
+{
+  "lexicon": 1,
+  "id": "com.etzhayyim.hikari.consumptionAuditRecord",
+  "description": "Aggregate consumption audit. G6 anti-surveillance: aggregate ≥1-hour buckets only; no smart-meter device PII (N7). Per ADR-2605261100.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "record": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "siteId": {"type": "string"},
+          "billingPeriodStart": {"type": "string"},
+          "billingPeriodEndDays": {"type": "integer"},
+          "totalKwhConsumed": {"type": "number"},
+          "hourlyBucketsCid": {"type": "string", "description": "IPFS pinned ≥1-hour aggregate buckets only"},
+          "anomalyFlags": {"type": "array", "items": {"type": "string"}},
+          "adherentDeliveryCount": {"type": "integer", "description": "Aggregate count of L2 adherents served; no per-adherent breakdown"}
+        },
+        "required": ["siteId", "billingPeriodStart", "billingPeriodEndDays", "totalKwhConsumed", "hourlyBucketsCid"]
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "lexicon": 1,
+  "id": "com.etzhayyim.hikari.generationRecord",
+  "description": "Per-period generation log. G11 yield deterministic: Ed25519-signed per-inverter 15-min interval; redundant metering for >10 kW sites. Aggregate-only; no per-adherent device PII. Per ADR-2605261100.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "record": {
+        "type": "object",
+        "properties": {
+          "siteId": {"type": "string"},
+          "intervalStart": {"type": "string"},
+          "intervalEndMinutes": {"type": "integer", "description": "15-min intervals R2+"},
+          "kWhGenerated": {"type": "number"},
+          "componentBreakdown": {"type": "array", "items": {"type": "object"}, "description": "Per-inverter kWh contribution"},
+          "redundantMeterReadingKwh": {"type": "number", "description": "G11: required for >10 kW sites"},
+          "signingInverterDids": {"type": "array", "items": {"type": "string"}, "description": "G11: Ed25519 sigs per inverter"}
+        },
+        "required": ["siteId", "intervalStart", "intervalEndMinutes", "kWhGenerated", "signingInverterDids"]
+      }
+    }
+  }
+}

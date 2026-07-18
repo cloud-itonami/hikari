@@ -1,4 +1,4 @@
-(ns hikari.methods.test-microgrid
+(ns hikari.methods.microgrid-test
   "hikari microgrid operational-loop tests (ADR-2606091800). 1:1 Clojure port of
   methods/test_microgrid.py, PLUS the constitutional gate made explicit + test-enforced:
 

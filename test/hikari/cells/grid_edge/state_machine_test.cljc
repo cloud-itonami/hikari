@@ -1,4 +1,4 @@
-(ns hikari.cells.grid-edge.test-state-machine
+(ns hikari.cells.grid-edge.state-machine-test
   "Tests for the hikari grid_edge gated cell state machine (ADR-2605261100 port).
   1:1 port of the grid_edge cases in cells/test_state_machines.py (pytest → clojure.test):
   commission → dispatch happy path (member-signed, dry-run, witness quorum), the N1

@@ -1,4 +1,4 @@
-(ns hikari.methods.test-agent
+(ns hikari.methods.agent-test
   "hikari 光 — agent cell tests (no kotoba host, no network, no LLM).
 
   ADR-2605261100 Phase 3. 1:1 port of py/test_agent.py.

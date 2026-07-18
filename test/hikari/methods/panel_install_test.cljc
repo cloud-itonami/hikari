@@ -1,4 +1,4 @@
-(ns hikari.methods.test-panel-install
+(ns hikari.methods.panel-install-test
   "hikari panel-install robot-motion tests (ADR-2606091800). 1:1 Clojure port of
   methods/test_panel_install.py, with the structural gates test-enforced:
 

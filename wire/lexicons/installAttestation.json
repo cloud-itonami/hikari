@@ -1,0 +1,29 @@
+{
+  "lexicon": 1,
+  "id": "com.etzhayyim.hikari.installAttestation",
+  "description": "Per-install attestation. Vendor + sourcing Charter Rider §2(g) audit per lot. G2 (no XUAR polysilicon + no conflict minerals) + G8 (no NdFeB) + G3 (battery chemistry safety) structural enforcement. Per ADR-2605261100.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "record": {
+        "type": "object",
+        "properties": {
+          "installId": {"type": "string"},
+          "parcelDid": {"type": "string"},
+          "componentType": {"type": "string", "knownValues": ["solar-pv", "battery-bank", "inverter", "wind-turbine", "geothermal-well", "heat-pump"]},
+          "vendorDid": {"type": "string"},
+          "componentManifestCid": {"type": "string"},
+          "sourcingAuditCid": {"type": "string", "description": "G2: §2(g) Charter Rider supply-chain audit per lot"},
+          "chemistryAttestation": {"type": "string", "knownValues": ["LFP", "NMC-restricted", "sodium-ion", "none-not-battery"], "description": "G3 battery chemistry; lead-acid REJECTED for stationary R2+"},
+          "magnetAttestation": {"type": "string", "knownValues": ["open-coil-electrically-excited", "ferrite", "none-not-applicable"], "description": "G8: NdFeB REJECTED"},
+          "firmwareAttestationCid": {"type": "string", "description": "G1: open-source firmware CID + Charter Rider notice"},
+          "installCapacityKw": {"type": "number"},
+          "installStorageKwh": {"type": "number"},
+          "attestingEngineerDid": {"type": "string"},
+          "attestingRobots": {"type": "array", "items": {"type": "string"}, "minItems": 2}
+        },
+        "required": ["installId", "parcelDid", "componentType", "vendorDid", "sourcingAuditCid", "attestingEngineerDid", "attestingRobots"]
+      }
+    }
+  }
+}

@@ -1,18 +1,14 @@
-(ns hikari.methods.test-charter-gates
+(ns hikari.methods.charter-gates-test
   "hikari — constitutional-gate conformance tests (manifest + central lexicons).
   Substrate-native Clojure (ADR-2606160842). 1:1 port of the pruned methods/test_charter_gates.py."
   (:require [clojure.test :refer [deftest is run-tests]]
+            [clojure.edn :as edn]
             [clojure.set :as set]
-            [clojure.string :as str]
-            [cheshire.core :as json]))
+            [clojure.string :as str]))
 
-(def ^:private here (.getParentFile (java.io.File. ^String *file*)))      ;; methods/
-(def ^:private actor-dir (.getParentFile here))                          ;; hikari/
-(def ^:private actor-name (.getName actor-dir))
-(def ^:private root (.. actor-dir getParentFile getParentFile))          ;; 20-actors → ROOT
-(def ^:private lexdir (java.io.File. root (str "00-contracts/lexicons/com/etzhayyim/" actor-name)))
-(defn- manifest [] (json/parse-string (slurp (java.io.File. actor-dir "manifest.jsonld"))))
-(defn- lex [name] (json/parse-string (slurp (java.io.File. lexdir (str name ".json")))))
+(defn- manifest [] (:actor/manifest (edn/read-string (slurp "manifest.edn"))))
+(defn- lex [name]
+  (edn/read-string (slurp (str "contracts/lexicons/" name ".edn"))))
 
 (def ^:private components
   #{"solar-pv" "battery-bank" "inverter" "wind-turbine" "geothermal-well" "heat-pump"})

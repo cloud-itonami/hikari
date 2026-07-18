@@ -1,0 +1,26 @@
+{
+  "lexicon": 1,
+  "id": "com.etzhayyim.hikari.parcelEnergyAttestation",
+  "description": "Parcel energy resource baseline + biodiversity-no-harm attestation. G9 land-trust integration; rooftop / brownfield / agrivoltaic priority. Per ADR-2605261100.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "record": {
+        "type": "object",
+        "properties": {
+          "parcelDid": {"type": "string"},
+          "landsRegistryCid": {"type": "string"},
+          "parcelClass": {"type": "string", "knownValues": ["rooftop", "brownfield", "agrivoltaic", "greenfield-council-attested"], "description": "G9 priority order; greenfield requires Council Lv6+ ≥3 attestation"},
+          "solarResourceKwhPerM2PerYear": {"type": "number"},
+          "windResourceMeanMsPerSec": {"type": "number"},
+          "geothermalGradientCPerKm": {"type": "number"},
+          "biodiversityNoHarmAttestationCid": {"type": "string", "description": "G9 mandatory"},
+          "darkSkyZoneFlag": {"type": "boolean", "description": "G14 light pollution gate"},
+          "residentialAdjacencyMeters": {"type": "integer", "description": "G14 acoustic gate: <35 dBA at 100 m"},
+          "attestingEngineerDid": {"type": "string"}
+        },
+        "required": ["parcelDid", "landsRegistryCid", "parcelClass", "biodiversityNoHarmAttestationCid", "attestingEngineerDid"]
+      }
+    }
+  }
+}

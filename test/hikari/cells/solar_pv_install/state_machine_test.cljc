@@ -1,4 +1,4 @@
-(ns hikari.cells.solar-pv-install.test-state-machine
+(ns hikari.cells.solar-pv-install.state-machine-test
   "Tests for the hikari solar_pv_install gated cell state machine (ADR-2605261100 port).
   1:1 port of the solar_pv_install cases in cells/test_state_machines.py (pytest →
   clojure.test): plan → commit happy path (reachable, member-signed, dry-run), the

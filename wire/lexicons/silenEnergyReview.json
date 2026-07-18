@@ -1,0 +1,36 @@
+{
+  "lexicon": 1,
+  "id": "com.etzhayyim.hikari.silenEnergyReview",
+  "description": "Council attestation scope for hikari energy decisions. Multi-axis (chemistry safety + sourcing + biodiversity + land use). G4 + G5 + G8 invariants require Lv7 unanimity to amend. Per ADR-2605261100.",
+  "defs": {
+    "main": {
+      "type": "record",
+      "record": {
+        "type": "object",
+        "properties": {
+          "scope": {"type": "string", "knownValues": [
+            "wave-1-r0-charter-baseline",
+            "r1-benchtop-activation",
+            "r2-pilot-activation-l2-eligibility",
+            "r3-community-scale-activation",
+            "g2-sourcing-audit-per-lot",
+            "g3-battery-chemistry-attestation",
+            "g4-nuclear-amendment-lv7-unanimity",
+            "g5-fossil-amendment-lv7-unanimity",
+            "g8-rare-earth-magnet-amendment-lv7-unanimity",
+            "g9-greenfield-parcel-attestation",
+            "g14-light-pollution-acoustic-audit",
+            "silicon-wave-2-fab-load-contract"
+          ]},
+          "subject": {"type": "string"},
+          "attestingCouncilMembers": {"type": "array", "items": {"type": "string"}, "minItems": 3},
+          "councilLevelRequired": {"type": "string", "knownValues": ["Lv6-supermajority", "Lv7-unanimity"], "description": "G4/G5/G8 require Lv7"},
+          "engineeringAdvisoryAttestation": {"type": "array", "items": {"type": "string"}, "description": "R1+: renewable-engineer DIDs"},
+          "attestationTimestamp": {"type": "string"},
+          "decisionCid": {"type": "string"}
+        },
+        "required": ["scope", "subject", "attestingCouncilMembers", "councilLevelRequired", "attestationTimestamp", "decisionCid"]
+      }
+    }
+  }
+}

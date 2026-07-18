@@ -1,7 +1,7 @@
 #!/usr/bin/env bb
 ;; hikari 光 — ANALYTICAL physics validation of the microgrid swing equation.
 ;; Run:  bb --classpath 20-actors 20-actors/hikari/methods/test_microgrid_physics.cljc
-(ns hikari.methods.test-microgrid-physics
+(ns hikari.methods.microgrid-physics-test
   "Analytical physics validation of the microgrid swing equation — distinct from test_microgrid,
   which only smoke-tests OUTCOMES (does the frequency restore? does the ROCOF relay trip?). This
   pins the simulator against the closed-form electromechanical physics it claims to implement:
