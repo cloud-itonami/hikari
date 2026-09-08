@@ -28,7 +28,7 @@
   ALL round()/{:.Nf} reproduce Python HALF_EVEN exactly via the exact BigDecimal of the
   double. Math/sin/cos/sqrt/atan2/hypot/pow map directly (last-ULP identical on JVM)."
   #?(:cljs (:require-macros))
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── Python-exact numeric helpers ────────────────────────────────────────────
 ;; round(x, n) → nearest, HALF_EVEN on the EXACT decimal value of the double, as a

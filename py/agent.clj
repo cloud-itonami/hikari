@@ -18,7 +18,7 @@
   (G8). R0 is compute-only; real dispatch gated by Council ratification (G10).
 
   Run:  bb --classpath 20-actors 20-actors/hikari/py/agent.clj"
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── constants ──────────────────────────────────────────────────────────────────
 (def TITHE_BPS 1000)   ; 10% TitheRouter auto-split, basis points
