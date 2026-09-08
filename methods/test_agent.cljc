@@ -5,7 +5,7 @@
   Exercises the 5 handlers + settlement + gates offline (Murakumo-only invariant
   untouched; G5). Expected values are copied VERBATIM from test_agent.py."
   (:require [clojure.test :refer [deftest is testing run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [hikari.methods.agent :as agent]))
 
 ;; ── handle-solar-pv-install ──────────────────────────────────────────────────

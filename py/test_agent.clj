@@ -8,7 +8,7 @@
 
       bb --classpath 20-actors 20-actors/hikari/py/test_agent.clj"
   (:require [clojure.test :refer [deftest is testing run-tests]]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [hikari.py.agent :as agent]))
 
 ;; ── handle_solar_pv_install ──────────────────────────────────────────────────

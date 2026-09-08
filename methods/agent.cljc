@@ -18,7 +18,7 @@
   1:1 faithful port of py/agent.py (ADR-2605261100 Phase 3).
   State maps use keyword keys (Python dict str keys → Clojure keywords), preserving
   the exact numeric semantics verified by test_agent.py."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 ;; ── constants ────────────────────────────────────────────────────────────────
 (def TITHE-BPS 1000)   ; 10% TitheRouter auto-split, basis points

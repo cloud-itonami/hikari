@@ -3,7 +3,7 @@
   Substrate-native Clojure (ADR-2606160842). 1:1 port of the pruned methods/test_charter_gates.py."
   (:require [clojure.test :refer [deftest is run-tests]]
             [clojure.set :as set]
-            [clojure.string :as str]
+            [kotoba.lang.text :as str]
             [cheshire.core :as json]))
 
 (def ^:private here (.getParentFile (java.io.File. ^String *file*)))      ;; methods/
@@ -47,7 +47,7 @@
   (let [comps (known (lex "installAttestation") "componentType")]
     (is (= components comps))
     (doseq [c comps]
-      (is (not (some #(str/includes? (str/lower-case c) %) fossil-nuclear))))))
+      (is (not (some #(str/includes? (str/lower c) %) fossil-nuclear))))))
 
 ;; ── G8 — no rare-earth permanent magnets ──
 (deftest test-g8-no-rare-earth-magnets
