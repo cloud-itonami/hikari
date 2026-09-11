@@ -17,7 +17,7 @@
   + TitheRouter 10% only — no fiat (G7). The platform holds no key; operator signs
   (G8). R0 is compute-only; real dispatch gated by Council ratification (G10).
 
-  Run:  bb --classpath 20-actors 20-actors/hikari/py/agent.clj"
+  Run:  bb --classpath 20-actors 20-actors/hikari/py/agent.cljk"
   (:require [kotoba.lang.text :as str]))
 
 ;; ── constants ──────────────────────────────────────────────────────────────────
