@@ -8,7 +8,7 @@ himawari feeds its PV modules). Renewable-only — no nuclear, no fossil, no rar
 | Lexicons | ✅ 5 under `com.etzhayyim.hikari.*` (install/generation/consumptionAudit/parcelEnergy/silenEnergyReview) |
 | Cells | 🟡 path-reserved (generation → storage → grid-edge, R0 import-time RuntimeError) |
 | Manifest | ✅ `manifest.jsonld` — `constitutionalGates` (G1–G14) machine-readable |
-| Tests | ✅ `nbb run_tests.cljs` — 13 suites under `test/`, **69 tests / 1372 assertions green** (2026-09-11); mutation-checked by the superproject `scripts/maturity-loop` |
+| Tests | ✅ `nbb run_tests.cljs` — 13 suites under `test/`, **71 tests / 1374 assertions green** (2026-09-11); mutation-checked by the superproject `scripts/maturity-loop` |
 | Methods | 🟡 offline engine = R1 |
 
 ## Charter gates pinned by the descriptor test
