@@ -23,11 +23,21 @@
     (is (= true (get dispatch "witnessOk")))))
 
 (deftest test-grid-edge-non-civilian-use-raises
-  (is (thrown? clojure.lang.ExceptionInfo
+  (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo)
                (sm/transition-commission {"use" "weapon" "load_step_kw" 120.0}))))
+
+(deftest test-grid-edge-unrestored-frequency-blocks-dispatch
+  ;; commit_dispatch reads the commissioning verdict it was handed; a failed
+  ;; acceptance test (frequency not restored) must not become a dispatch record.
+  (let [s1 (-> (sm/transition-commission {"load_step_kw" 120.0})
+               (assoc-in ["cell_state" "freq_restored"] false)
+               (assoc "member_sig" "m:sig" "witness_sigs" WITNESS))]
+    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo)
+                          #"frequency not restored"
+                          (sm/transition-commit-dispatch s1)))))
 
 (deftest test-grid-edge-server-signature-refused
   (let [s1 (-> (sm/transition-commission {"load_step_kw" 120.0})
                (assoc "member_sig" "m:sig" "server_sig" "s:sig" "witness_sigs" WITNESS))]
-    (is (thrown? clojure.lang.ExceptionInfo
+    (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo)
                  (sm/transition-commit-dispatch s1)))))

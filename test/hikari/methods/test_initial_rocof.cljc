@@ -1,6 +1,5 @@
-#!/usr/bin/env bb
 ;; hikari 光 — tests for the analytical initial RoCoF (grid-inertia response).
-;; Run:  bb --classpath 20-actors 20-actors/hikari/methods/test_initial_rocof.cljc
+;; Run:  nbb run_tests.cljs   (repo root; runs every suite, this one included)
 (ns hikari.methods.test-initial-rocof
   "Tests for initial-rocof — the swing equation's t=0 |df/dt| = |ΔP_pu|·f_nom/(2H), the grid-inertia
   response. Pins the analytical value against the plant model's realized first-step slope, plus the
@@ -40,7 +39,3 @@
   (is (> (m/initial-rocof plant 0.4) m/ROCOF-TRIP-HZ-PER-S)
       "a 0.4 pu step (2.5 Hz/s) exceeds the 2.0 Hz/s ROCOF trip — the relay would act"))
 
-#?(:clj
-   (when (= *file* (System/getProperty "babashka.file"))
-     (let [{:keys [fail error]} (run-tests 'hikari.methods.test-initial-rocof)]
-       (System/exit (if (zero? (+ fail error)) 0 1)))))

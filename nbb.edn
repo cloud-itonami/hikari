@@ -1,0 +1,11 @@
+;; nbb reads this file. It does NOT read deps.edn, and the test runner here is
+;; run as bare `nbb run_tests.cljs`, so a coordinate declared only in deps.edn
+;; is invisible to it.
+;;
+;; :paths and the sha below are COPIED from deps.edn, not chosen here.
+{:paths ["src" "test"]
+ :deps {
+        ;; kotoba.lang.text, not clojure.string. Pinned as an explicit floor:
+        ;; tools.deps takes the NEWEST sha it is shown, so without a floor here
+        ;; this repo silently rides whatever a sibling happens to name.
+        io.github.kotoba-lang/text {:git/sha "73bdb13ae7a3d004b44bca08be03a3191157a38f"}}}

@@ -39,19 +39,19 @@
 
 (deftest test-non-civilian-use-refused
   (doseq [use ["weapon" "interdiction" "smelting"]]
-    (is (thrown-with-msg? clojure.lang.ExceptionInfo #"N1"
+    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"N1"
                           (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :use use))
         (str "use " use " must be refused"))
     (is (sub/safety-error?
          (try (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :use use) nil
-              (catch clojure.lang.ExceptionInfo e e))))))
+              (catch #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e e))))))
 
 (deftest test-server-signature-refused
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G15/G7"
+  (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"G15/G7"
                         (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :server-sig "s:sig"))))
 
 (deftest test-missing-member-signature-refused
-  (is (thrown-with-msg? clojure.lang.ExceptionInfo #"G15/G7"
+  (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"G15/G7"
                         (pi/plan-panel-install [1.0 0.2] "" WITNESS))))
 
 (deftest test-witness-quorum-below-two-recorded-not-raised

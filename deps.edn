@@ -7,7 +7,13 @@
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
-                      {:git/tag "v0.5.1" :git/sha "dfb30dd6605cb6c0efc275e1df1736f6e90d4d73"}}
-         :main-opts ["-m" "cognitect.test-runner"]}
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd6605cb6c0efc275e1df1736f6e90d4d73"}
+                      ;; descriptor_test reads manifest.jsonld + lexicons/**/*.json;
+                      ;; on nbb that is js/JSON.parse, on the JVM it is this.
+                      org.clojure/data.json {:mvn/version "2.5.1"}}
+         ;; -r: cognitect.test-runner's default namespace regex is `.*-test$`, which
+         ;; silently skips the 11 `test-*` suites (measured 2026-09-11: 17 of 69 tests
+         ;; ran, exit 0). Match every namespace under test/ instead.
+         :main-opts ["-m" "cognitect.test-runner" "-r" "hikari\\..*"]}
   :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
          :main-opts    ["-m" "clj-kondo.main" "--lint" "src" "test" "--fail-level" "error"]}}}

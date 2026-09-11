@@ -120,7 +120,9 @@
         grid-ok     (>= battery-soc 20)
         ts          (str (long (let [v (get state :timestamp "0")]
                                  (if (string? v)
-                                   (try (Long/parseLong v) (catch Exception _ 0))
+                                   ;; Python int(str) — a non-numeric string is 0, not a throw.
+                                   #?(:clj (try (Long/parseLong v) (catch Exception _ 0))
+                                      :cljs (let [n (js/parseInt v 10)] (if (js/isNaN n) 0 n)))
                                    (long v)))))]
     (merge state
            {:net_load_kw     net-kw

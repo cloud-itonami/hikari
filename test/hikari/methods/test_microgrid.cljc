@@ -36,13 +36,13 @@
 
 (deftest test-non-civilian-use-refused
   (doseq [use ["weapon" "fire-control" "mining"]]
-    (is (thrown-with-msg? clojure.lang.ExceptionInfo #"N1"
+    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"N1"
                           (mg/commission-microgrid 120.0 :use use))
         (str "use " use " must be refused"))
     ;; and it is specifically a SafetyError (matches Python `except SafetyError`).
     (is (sub/safety-error?
          (try (mg/commission-microgrid 120.0 :use use) nil
-              (catch clojure.lang.ExceptionInfo e e))))))
+              (catch #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e e))))))
 
 (deftest test-normal-load-step-does-not-trip-rocof
   ;; +60 kW step: primary droop arrests the dive, ROCOF stays under the trip.

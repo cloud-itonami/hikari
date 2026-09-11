@@ -20,9 +20,19 @@
 (deftest test-install-unreachable-target-blocks-commit
   (let [s1 (sm/transition-plan-motion
             {"target_x" 99.0 "target_y" 0.0 "member_sig" "m:sig" "witness_sigs" WITNESS})]
-    (is (thrown? clojure.lang.ExceptionInfo (sm/transition-commit-job s1)))))
+    (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) (sm/transition-commit-job s1)))))
+
+(deftest test-install-envelope-violation-blocks-commit
+  ;; commit_job reads the planner's envelope verdict; a trajectory that violates the
+  ;; joint-rate ceiling must not become a job, even when reachable + quorum met.
+  (let [s1 (-> (sm/transition-plan-motion
+                {"target_x" 1.5 "target_y" 0.4 "member_sig" "m:sig" "witness_sigs" WITNESS})
+               (assoc-in ["cell_state" "envelope_ok"] false))]
+    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo)
+                          #"safety envelope"
+                          (sm/transition-commit-job s1)))))
 
 (deftest test-install-witness-below-quorum-blocks-commit
   (let [s1 (sm/transition-plan-motion
             {"target_x" 1.5 "target_y" 0.4 "member_sig" "m:sig" "witness_sigs" ["did:r:a"]})]
-    (is (thrown? clojure.lang.ExceptionInfo (sm/transition-commit-job s1)))))
+    (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) (sm/transition-commit-job s1)))))
