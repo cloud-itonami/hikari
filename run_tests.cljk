@@ -1,7 +1,7 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; run_tests.cljk — hikari 光 test suite.
 ;;
-;;   nbb run_tests.cljk          # repo root; nbb.edn supplies :paths src/test + kotoba.lang.text
+;;   kbb --backend sci run_tests.cljk          # repo root; nbb.edn supplies :paths src/test + kotoba.lang.text
 ;;
 ;; Runs every clojure.test namespace under test/: the microgrid control loop
 ;; (frequency restore, ROCOF relay, swing-equation physics), the Otete panel-install

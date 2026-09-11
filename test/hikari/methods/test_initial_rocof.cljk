@@ -1,5 +1,5 @@
 ;; hikari 光 — tests for the analytical initial RoCoF (grid-inertia response).
-;; Run:  nbb run_tests.cljk   (repo root; runs every suite, this one included)
+;; Run:  kbb --backend sci run_tests.cljk   (repo root; runs every suite, this one included)
 (ns hikari.methods.test-initial-rocof
   "Tests for initial-rocof — the swing equation's t=0 |df/dt| = |ΔP_pu|·f_nom/(2H), the grid-inertia
   response. Pins the analytical value against the plant model's realized first-step slope, plus the
