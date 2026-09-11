@@ -1,4 +1,4 @@
-#!/usr/bin/env bb
+#!/usr/bin/env kbb
 ;; Working Clojure port of py/agent.py (hikari energy gen/storage/grid-edge actor).
 (ns hikari.py.agent
   "hikari 光 — energy generation/storage/grid-edge langgraph actor (kotoba WASM cell).
@@ -17,7 +17,7 @@
   + TitheRouter 10% only — no fiat (G7). The platform holds no key; operator signs
   (G8). R0 is compute-only; real dispatch gated by Council ratification (G10).
 
-  Run:  bb --classpath 20-actors 20-actors/hikari/py/agent.cljk"
+  Run:  kbb --classpath 20-actors 20-actors/hikari/py/agent.cljk"
   (:require [kotoba.lang.text :as str]))
 
 ;; ── constants ──────────────────────────────────────────────────────────────────

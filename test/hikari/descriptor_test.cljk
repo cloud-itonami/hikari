@@ -22,8 +22,8 @@
   that the lexicons in THIS repo never carried. Its one assertion that holds here —
   the full G1–G14 gate set — is kept as the first test below.
 
-  Reads files relative to the repo root (cwd), the way `nbb run_tests.cljk` and
-  `clojure -M:test` are both invoked."
+  Reads files relative to the repo root (cwd), the way `kbb --backend sci run_tests.cljk` and
+  `kbb -M:test` are both invoked."
   (:require [clojure.test :refer [deftest is testing]]
             [clojure.set :as set]
             [kotoba.lang.text :as str]
