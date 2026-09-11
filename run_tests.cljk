@@ -1,7 +1,7 @@
 #!/usr/bin/env nbb
-;; run_tests.cljs — hikari 光 test suite.
+;; run_tests.cljk — hikari 光 test suite.
 ;;
-;;   nbb run_tests.cljs          # repo root; nbb.edn supplies :paths src/test + kotoba.lang.text
+;;   nbb run_tests.cljk          # repo root; nbb.edn supplies :paths src/test + kotoba.lang.text
 ;;
 ;; Runs every clojure.test namespace under test/: the microgrid control loop
 ;; (frequency restore, ROCOF relay, swing-equation physics), the Otete panel-install
@@ -45,9 +45,9 @@
   印字してはならない。"
   "hikari suite: all green")
 
-;; NOT run here: py/test_agent.clj. It is a bb-hosted duplicate of
-;; test/hikari/methods/test_agent.cljc (`#!/usr/bin/env bb`, ns hikari.py.test-agent
-;; over py/agent.clj) — same 13 cases, snake_case keys. bb is a retired script host
+;; NOT run here: py/test_agent.cljk. It is a bb-hosted duplicate of
+;; test/hikari/methods/test_agent.cljk (`#!/usr/bin/env bb`, ns hikari.py.test-agent
+;; over py/agent.cljk) — same 13 cases, snake_case keys. bb is a retired script host
 ;; workspace-wide (ADR-2607173000) and the .clj extension is invisible to nbb's
 ;; resolver, so it is left as the historical port; the cases it holds run above
 ;; through hikari.methods.test-agent.
@@ -58,7 +58,7 @@
 ;; magnetAttestation / chemistryAttestation knownValues) that the lexicons in THIS
 ;; repo never carried — lexicons/**/*.json here are the EAVT projection of lex/*.edn
 ;; (lexicon-projection.edn). Ported as written it would have been 6 red of 7.
-;; test/hikari/descriptor_test.cljc is its replacement: it keeps the one assertion
+;; test/hikari/descriptor_test.cljk is its replacement: it keeps the one assertion
 ;; that holds here (the full G1–G14 gate set) and pins the seams this tree does have.
 
 (defmethod t/report [:cljs.test/default :end-run-tests] [m]

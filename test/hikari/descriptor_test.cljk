@@ -22,7 +22,7 @@
   that the lexicons in THIS repo never carried. Its one assertion that holds here —
   the full G1–G14 gate set — is kept as the first test below.
 
-  Reads files relative to the repo root (cwd), the way `nbb run_tests.cljs` and
+  Reads files relative to the repo root (cwd), the way `nbb run_tests.cljk` and
   `clojure -M:test` are both invoked."
   (:require [clojure.test :refer [deftest is testing]]
             [clojure.set :as set]

@@ -6,7 +6,7 @@
   ADR-2605261100. Exercises the 5 handlers + settlement + gates with injected
   functions so the suite runs offline (Murakumo-only invariant untouched; G5).
 
-      bb --classpath 20-actors 20-actors/hikari/py/test_agent.clj"
+      bb --classpath 20-actors 20-actors/hikari/py/test_agent.cljk"
   (:require [clojure.test :refer [deftest is testing run-tests]]
             [kotoba.lang.text :as str]
             [hikari.py.agent :as agent]))

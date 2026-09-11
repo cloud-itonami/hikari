@@ -1,5 +1,5 @@
 ;; hikari 光 — ANALYTICAL physics validation of the microgrid swing equation.
-;; Run:  nbb run_tests.cljs   (repo root; runs every suite, this one included)
+;; Run:  nbb run_tests.cljk   (repo root; runs every suite, this one included)
 (ns hikari.methods.test-microgrid-physics
   "Analytical physics validation of the microgrid swing equation — distinct from test_microgrid,
   which only smoke-tests OUTCOMES (does the frequency restore? does the ROCOF relay trip?). This

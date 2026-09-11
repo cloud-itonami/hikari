@@ -1,5 +1,5 @@
 ;; nbb reads this file. It does NOT read deps.edn, and the test runner here is
-;; run as bare `nbb run_tests.cljs`, so a coordinate declared only in deps.edn
+;; run as bare `nbb run_tests.cljk`, so a coordinate declared only in deps.edn
 ;; is invisible to it.
 ;;
 ;; :paths and the sha below are COPIED from deps.edn, not chosen here.
