@@ -1,6 +1,5 @@
-#!/usr/bin/env bb
 ;; hikari 光 — kinematics validation of the shared kuni-umi planar-arm FK/IK.
-;; Run:  bb --classpath 20-actors 20-actors/hikari/methods/test_substrate_kinematics.cljc
+;; Run:  nbb run_tests.cljs   (repo root; runs every suite, this one included)
 (ns hikari.methods.test-substrate-kinematics
   "Kinematics validation of the planar-arm forward/inverse kinematics in the shared kuni-umi
   substrate — the closed-form 2-link IK (`ik2`) that drives panel_install and any robot-arm reach
@@ -56,7 +55,3 @@
       (is (and (close? (:x pu) (:x pd)) (close? (:y pu) (:y pd)))
           "both elbow solutions reach the same end-effector"))))
 
-#?(:clj
-   (when (= *file* (System/getProperty "babashka.file"))
-     (let [{:keys [fail error]} (run-tests 'hikari.methods.test-substrate-kinematics)]
-       (System/exit (if (zero? (+ fail error)) 0 1)))))

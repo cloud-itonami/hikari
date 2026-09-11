@@ -8,7 +8,7 @@
   Clojure namespace munges badly under SCI/the JVM classloader (`_substrate` →
   `_substrate.cljc` is fine on disk but the symbol `_substrate` is an invalid first
   segment in practice and confuses tooling). We pick the clean ns
-  `hikari.methods.substrate`, resolving to `20-actors/hikari/methods/substrate.cljc`,
+  `hikari.methods.substrate`, resolving to `src/hikari/methods/substrate.cljc`,
   and the siblings `(:require [hikari.methods.substrate :as sub])`.
 
   PRIMITIVES (open-ot field-tier `:representative` twins — float, offline sim only):
@@ -83,7 +83,7 @@
 (defn safety-error?
   "True iff the throwable is a SafetyError (matches Python `except SafetyError`)."
   [e]
-  (and (instance? #?(:clj clojure.lang.ExceptionInfo :cljs cljs.core/ExceptionInfo) e)
+  (and (instance? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e)
        (= "SafetyError" (:error (ex-data e)))))
 
 (defn assert-civilian

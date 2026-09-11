@@ -1,1 +1,7 @@
 .cpcache/
+# nbb dependency cache (regenerated from nbb.edn; needs bb on a cold machine).
+# Ignored because this repository has no cold-cache-without-bb path: it is in
+# no fleet-ci gate (scripts/fleet-ci/gates.edn: 0 hits) and has no
+# .github/workflows (measured 2026-09-11). The maturity-loop runs it on a
+# machine that has bb.
+.nbb/

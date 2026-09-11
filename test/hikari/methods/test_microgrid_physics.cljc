@@ -1,6 +1,5 @@
-#!/usr/bin/env bb
 ;; hikari 光 — ANALYTICAL physics validation of the microgrid swing equation.
-;; Run:  bb --classpath 20-actors 20-actors/hikari/methods/test_microgrid_physics.cljc
+;; Run:  nbb run_tests.cljs   (repo root; runs every suite, this one included)
 (ns hikari.methods.test-microgrid-physics
   "Analytical physics validation of the microgrid swing equation — distinct from test_microgrid,
   which only smoke-tests OUTCOMES (does the frequency restore? does the ROCOF relay trip?). This
@@ -60,7 +59,3 @@
     (is (close? (mg/rocof traj 0.1) (Math/abs slope) 1e-6)
         "rocof of a constant-slope ramp = |slope|")))
 
-#?(:clj
-   (when (= *file* (System/getProperty "babashka.file"))
-     (let [{:keys [fail error]} (run-tests 'hikari.methods.test-microgrid-physics)]
-       (System/exit (if (zero? (+ fail error)) 0 1)))))
