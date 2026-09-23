@@ -7,7 +7,7 @@
   functions so the suite runs offline (Murakumo-only invariant untouched; G5).
 
       kbb --classpath 20-actors 20-actors/hikari/py/test_agent.cljk"
-  (:require [clojure.test :refer [deftest is testing run-tests]]
+  (:require [kotoba.test :refer [deftest is testing run-tests]]
             [kotoba.lang.text :as str]
             [hikari.py.agent :as agent]))
 
@@ -122,5 +122,5 @@
 ;; ── runner ────────────────────────────────────────────────────────────────────
 
 (when (= *file* (System/getProperty "babashka.file"))
-  (let [{:keys [fail error]} (clojure.test/run-tests 'hikari.py.test-agent)]
+  (let [{:keys [fail error]} (kotoba.test/run-tests 'hikari.py.test-agent)]
     (System/exit (if (zero? (+ fail error)) 0 1))))

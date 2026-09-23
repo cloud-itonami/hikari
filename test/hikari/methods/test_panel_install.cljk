@@ -13,7 +13,7 @@
     aggregate/dry     — to-datoms is keyless + dry-run.
 
   cell/state-machine tests are deferred (Council-gated at R0)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [hikari.methods.substrate :as sub]
             [hikari.methods.panel-install :as pi]))
 

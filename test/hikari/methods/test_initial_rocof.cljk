@@ -5,7 +5,7 @@
   response. Pins the analytical value against the plant model's realized first-step slope, plus the
   inertia-adequacy scaling and the anti-islanding trip comparison."
   (:require [hikari.methods.microgrid :as m]
-            [clojure.test :refer [deftest is run-tests]]))
+            [kotoba.test :refer [deftest is run-tests]]))
 
 (defn- close?
   ([x y] (close? x y 1e-9))

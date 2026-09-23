@@ -24,7 +24,7 @@
 ;;
 ;; workspace rule: script host is nbb; .sh / .mjs / bb are not written anew.
 (ns run-tests
-  (:require [clojure.test :as t]
+  (:require [kotoba.test :as t]
             [hikari.murakumo-test]
             [hikari.descriptor-test]
             [hikari.methods.test-agent]
