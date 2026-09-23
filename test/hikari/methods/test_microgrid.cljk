@@ -10,7 +10,7 @@
 
   cell/state-machine/commissioning-harness tests are deferred (those need unported
   sibling modules + the kuni-umi commissioning seam, Council-gated at R0)."
-  (:require [clojure.test :refer [deftest is run-tests]]
+  (:require [kotoba.test :refer [deftest is run-tests]]
             [hikari.methods.substrate :as sub]
             [hikari.methods.microgrid :as mg]))
 

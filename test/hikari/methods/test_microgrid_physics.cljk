@@ -12,7 +12,7 @@
   so a regression in the inertia constant H, damping D, per-unit base, the Euler integrator, or
   the ROCOF-relay windowing is caught as a NUMBER, not just 'it still settles somewhere'."
   (:require [hikari.methods.microgrid :as mg]
-            [clojure.test :refer [deftest is run-tests]]))
+            [kotoba.test :refer [deftest is run-tests]]))
 
 (defn- close? [a b eps] (< (Math/abs (- (double a) (double b))) (double eps)))
 (def ^:private base {:f-nom 50.0 :inertia-h 4.0 :damping-d 1.5 :s-base 200.0 :p-load 100.0 :f 50.0})

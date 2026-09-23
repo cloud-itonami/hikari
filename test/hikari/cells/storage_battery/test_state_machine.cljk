@@ -1,7 +1,7 @@
 (ns hikari.cells.storage-battery.test-state-machine
   "Tests for hikari storage_battery state machine (ADR-2605261100).
   R0 scaffold: verifies the cell raises correctly before activation."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [hikari.cells.storage-battery.state-machine :as sm]))
 
 (deftest solve-raises-r0-scaffold

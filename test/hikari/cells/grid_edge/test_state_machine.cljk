@@ -3,7 +3,7 @@
   1:1 port of the grid_edge cases in cells/test_state_machines.py (pytest → clojure.test):
   commission → dispatch happy path (member-signed, dry-run, witness quorum), the N1
   non-civilian-use refusal, and the G15/G7 server-signature refusal."
-  (:require [clojure.test :refer [deftest is]]
+  (:require [kotoba.test :refer [deftest is]]
             [hikari.cells.grid-edge.state-machine :as sm]))
 
 (def WITNESS ["did:web:etzhayyim.com:kuniumi:robot:otete-01"
