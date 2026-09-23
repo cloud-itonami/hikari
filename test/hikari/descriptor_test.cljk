@@ -29,7 +29,7 @@
             [kotoba.lang.text :as str]
             [hikari.murakumo :as m]
             [hikari.methods.agent :as agent]
-            #?(:clj [clojure.edn :as edn] :cljs [cljs.reader :as edn])
+            #?(:clj [kotoba.lang.edn :as edn] :cljs [cljs.reader :as edn])
             #?(:clj [clojure.data.json :as json] :cljs ["node:fs" :as fs])))
 
 ;; ── portable IO ─────────────────────────────────────────────────────────────
