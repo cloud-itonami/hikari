@@ -30,7 +30,7 @@
             [hikari.murakumo :as m]
             [hikari.methods.agent :as agent]
             #?(:clj [kotoba.lang.edn :as edn] :cljs [cljs.reader :as edn])
-            #?(:clj [clojure.data.json :as json] :cljs ["node:fs" :as fs])))
+            #?(:clj [kotoba.json :as json] :cljs ["node:fs" :as fs])))
 
 ;; ── portable IO ─────────────────────────────────────────────────────────────
 (defn- read-text [rel] #?(:clj (slurp rel) :cljs (fs/readFileSync rel "utf8")))
