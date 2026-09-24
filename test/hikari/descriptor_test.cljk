@@ -25,7 +25,7 @@
   Reads files relative to the repo root (cwd), the way `kbb --backend sci run_tests.cljk` and
   `kbb -M:test` are both invoked."
   (:require [kotoba.test :refer [deftest is testing]]
-            [clojure.set :as set]
+            [kotoba.lang.coll :as set]
             [kotoba.lang.text :as str]
             [hikari.murakumo :as m]
             [hikari.methods.agent :as agent]
