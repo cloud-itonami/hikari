@@ -1,12 +1,12 @@
 (ns hikari.cells.geothermal-micro.test-state-machine
   "Tests for hikari geothermal_micro state machine (ADR-2605261100).
   R0 scaffold: verifies the cell raises correctly before activation."
-  (:require [kotoba.test :refer [deftest is]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is]]
             [hikari.cells.geothermal-micro.state-machine :as sm]))
 
 (deftest solve-raises-r0-scaffold
   (is (thrown-with-msg?
-       #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo)
+       kerror/ExceptionInfo
        #"hikari R0 scaffold"
        (sm/solve {}))))
 
@@ -14,7 +14,7 @@
   (try
     (sm/solve {"projectId" "TEST"})
     (is false "expected exception")
-    (catch #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e
+    (catch kerror/ExceptionInfo e
       (is (= :hikari (:actor (ex-data e))))
       (is (= :geothermal-micro (:cell (ex-data e))))
       (is (= :r0-scaffold (:status (ex-data e)))))))

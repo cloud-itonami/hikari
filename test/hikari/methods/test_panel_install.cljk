@@ -13,7 +13,7 @@
     aggregate/dry     — to-datoms is keyless + dry-run.
 
   cell/state-machine tests are deferred (Council-gated at R0)."
-  (:require [kotoba.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is run-tests]]
             [hikari.methods.substrate :as sub]
             [hikari.methods.panel-install :as pi]))
 
@@ -39,19 +39,19 @@
 
 (deftest test-non-civilian-use-refused
   (doseq [use ["weapon" "interdiction" "smelting"]]
-    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"N1"
+    (is (thrown-with-msg? kerror/ExceptionInfo #"N1"
                           (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :use use))
         (str "use " use " must be refused"))
     (is (sub/safety-error?
          (try (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :use use) nil
-              (catch #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e e))))))
+              (catch kerror/ExceptionInfo e e))))))
 
 (deftest test-server-signature-refused
-  (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"G15/G7"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G15/G7"
                         (pi/plan-panel-install [1.0 0.2] "m:sig" WITNESS :server-sig "s:sig"))))
 
 (deftest test-missing-member-signature-refused
-  (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"G15/G7"
+  (is (thrown-with-msg? kerror/ExceptionInfo #"G15/G7"
                         (pi/plan-panel-install [1.0 0.2] "" WITNESS))))
 
 (deftest test-witness-quorum-below-two-recorded-not-raised

@@ -10,7 +10,7 @@
 
   cell/state-machine/commissioning-harness tests are deferred (those need unported
   sibling modules + the kuni-umi commissioning seam, Council-gated at R0)."
-  (:require [kotoba.test :refer [deftest is run-tests]]
+  (:require [kotoba.lang.error :as kerror] [kotoba.test :refer [deftest is run-tests]]
             [hikari.methods.substrate :as sub]
             [hikari.methods.microgrid :as mg]))
 
@@ -36,13 +36,13 @@
 
 (deftest test-non-civilian-use-refused
   (doseq [use ["weapon" "fire-control" "mining"]]
-    (is (thrown-with-msg? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) #"N1"
+    (is (thrown-with-msg? kerror/ExceptionInfo #"N1"
                           (mg/commission-microgrid 120.0 :use use))
         (str "use " use " must be refused"))
     ;; and it is specifically a SafetyError (matches Python `except SafetyError`).
     (is (sub/safety-error?
          (try (mg/commission-microgrid 120.0 :use use) nil
-              (catch #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e e))))))
+              (catch kerror/ExceptionInfo e e))))))
 
 (deftest test-normal-load-step-does-not-trip-rocof
   ;; +60 kW step: primary droop arrests the dive, ROCOF stays under the trip.
