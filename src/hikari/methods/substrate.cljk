@@ -28,7 +28,7 @@
   ALL round()/{:.Nf} reproduce Python HALF_EVEN exactly via the exact BigDecimal of the
   double. Math/sin/cos/sqrt/atan2/hypot/pow map directly (last-ULP identical on JVM)."
   #?(:cljs (:require-macros))
-  (:require [kotoba.lang.text :as str]))
+  (:require [kotoba.lang.error :as kerror] [kotoba.lang.text :as str]))
 
 ;; ── Python-exact numeric helpers ────────────────────────────────────────────
 ;; round(x, n) → nearest, HALF_EVEN on the EXACT decimal value of the double, as a
@@ -83,7 +83,7 @@
 (defn safety-error?
   "True iff the throwable is a SafetyError (matches Python `except SafetyError`)."
   [e]
-  (and (instance? #?(:clj clojure.lang.ExceptionInfo :cljs ExceptionInfo) e)
+  (and (instance? kerror/ExceptionInfo e)
        (= "SafetyError" (:error (ex-data e)))))
 
 (defn assert-civilian
