@@ -107,4 +107,4 @@ com.etzhayyim.hikari.{
 - `/90-docs/adr/2605261100-hikari-energy-tier-b-actor-r0.md` — Master ADR
 - `/90-docs/adr/2605192245-etzhayyim-global-land-sovereignty.md` — Land Trust
 - `/90-docs/adr/2605242500-baien-iwakura-ternary-asic.md` — silicon Wave 1 (fab load)
-- `/CLAUDE.md` — Religious-corp status table
+- `/AGENTS.md` — Religious-corp status table

@@ -1,4 +1,4 @@
-# 20-actors/hikari — CLAUDE.md
+# 20-actors/hikari — AGENTS.md
 
 ## Identity
 
@@ -110,4 +110,4 @@ python -c "import hikari.cells.consumption_audit" 2>&1 | grep "R0 scaffold"
 - `/90-docs/adr/2605261000-labor-liberation-transition-mechanism.md` — L2 gate
 - `/90-docs/adr/2605192245-etzhayyim-global-land-sovereignty.md` — Land Trust
 - `/20-actors/kuni-umi/README.md` — Robotics class lineage
-- `/CLAUDE.md` — Religious-corp status table
+- `/AGENTS.md` — Religious-corp status table
